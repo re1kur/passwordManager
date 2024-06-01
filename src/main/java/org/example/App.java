@@ -17,12 +17,18 @@ public class App extends Application {
         Image icon = new Image(getIcon);
         primaryStage.getIcons().add(icon);
         primaryStage.setResizable(false);
-        Parent root = FXMLLoader.load(getClass().getResource("/mainScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/mainScene.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 
     public static void main(String[] args) {
         Application.launch(args);
+    }
+    public static Boolean checkLogin (String login) {
+        if (login.equals("re1kur")) {
+            return true;
+        }
+        return false;
     }
 }
