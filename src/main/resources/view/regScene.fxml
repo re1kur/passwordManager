@@ -13,7 +13,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="regScene" prefHeight="700.0" prefWidth="450.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.RegController">
+<AnchorPane fx:id="regScene" prefHeight="700.0" prefWidth="450.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.RegSceneController">
    <children>
       <TextField fx:id="logToReg" alignment="CENTER" layoutX="164.0" layoutY="335.0" prefHeight="29.0" prefWidth="122.0" style="-fx-background-color: black; -fx-border-color: green; -fx-border-width: 1;">
          <font>
@@ -586,7 +586,7 @@
             <Glow level="1.0" />
          </effect>
       </Label>
-      <Button fx:id="logToRegBtn" alignment="CENTER" layoutX="193.0" layoutY="605.0" mnemonicParsing="false" onAction="#continueReg" style="-fx-background-color: black; -fx-border-color: green;" text="continue" textAlignment="CENTER" textFill="#1cff03">
+      <Button alignment="CENTER" layoutX="193.0" layoutY="605.0" mnemonicParsing="false" onAction="#logToReg" style="-fx-background-color: black; -fx-border-color: green;" text="continue" textAlignment="CENTER" textFill="#1cff03">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -788,12 +788,12 @@
             </Label>
          </children>
       </VBox>
-      <Button fx:id="backToAuthBtn" alignment="CENTER" layoutX="192.0" layoutY="641.0" mnemonicParsing="false" onAction="#backToAuth" prefHeight="27.0" prefWidth="66.0" style="-fx-background-color: black; -fx-border-color: green;" text="back" textAlignment="CENTER" textFill="#1cff03">
+      <Button alignment="CENTER" layoutX="192.0" layoutY="641.0" mnemonicParsing="false" onAction="#backToAuth" prefHeight="27.0" prefWidth="66.0" style="-fx-background-color: black; -fx-border-color: green;" text="back" textAlignment="CENTER" textFill="#1cff03">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label fx:id="errorLabel" layoutX="129.0" layoutY="289.0" text="this login is already registered" textFill="RED" visible="false">
+      <Label fx:id="errorLabel" alignment="CENTER" layoutX="120.0" layoutY="289.0" prefHeight="14.0" prefWidth="207.0" textAlignment="CENTER" textFill="RED" visible="false">
          <font>
             <Font name="SimSun" size="12.0" />
          </font>

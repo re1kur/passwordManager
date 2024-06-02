@@ -3,6 +3,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.DropShadow?>
@@ -14,7 +15,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="seedPhsScene" prefHeight="700.0" prefWidth="450.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.SeedPhsSceneController">
+<AnchorPane fx:id="checkSeedPhsScene" prefHeight="700.0" prefWidth="450.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.CheckPhsSceneController">
     <children>
         <VBox layoutX="38.0" layoutY="14.0" prefHeight="354.0" prefWidth="22.0">
             <children>
@@ -579,7 +580,7 @@
                </input></Reflection>
             </effect>
         </VBox>
-        <Button alignment="CENTER" layoutX="193.0" layoutY="605.0" mnemonicParsing="false" onAction="#checkSeed" style="-fx-background-color: black; -fx-border-color: green;" text="continue" textAlignment="CENTER" textFill="#1cff03">
+        <Button alignment="CENTER" layoutX="193.0" layoutY="605.0" mnemonicParsing="false" onAction="#finalReg" style="-fx-background-color: black; -fx-border-color: green;" text="continue" textAlignment="CENTER" textFill="#1cff03">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -784,7 +785,7 @@
             <MotionBlur />
          </effect>
         </VBox>
-        <Button alignment="CENTER" layoutX="192.0" layoutY="641.0" mnemonicParsing="false" onAction="#backToReg" prefHeight="27.0" prefWidth="66.0" style="-fx-background-color: black; -fx-border-color: green;" text="back" textAlignment="CENTER" textFill="#ff0505">
+        <Button alignment="CENTER" layoutX="192.0" layoutY="641.0" mnemonicParsing="false" onAction="#backToSeeds" prefHeight="27.0" prefWidth="66.0" style="-fx-background-color: black; -fx-border-color: green;" text="back" textAlignment="CENTER" textFill="#ff0505">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -792,124 +793,33 @@
             <Reflection />
          </effect>
         </Button>
-        <Label fx:id="errorLabel" layoutX="129.0" layoutY="289.0" text="this login is already registered" textFill="RED" visible="false">
-            <font>
-                <Font name="SimSun" size="12.0" />
-            </font>
-            <effect>
-                <Glow />
-            </effect>
-        </Label>
-      <Label fx:id="enteredLogin" alignment="CENTER" layoutX="153.0" layoutY="181.0" prefHeight="19.0" prefWidth="143.0" style="-fx-border-color: green;" text="entered login" textAlignment="CENTER" textFill="#d11111">
+      <Label fx:id="seedNumber" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="200.0" prefHeight="62.0" prefWidth="327.0" style="-fx-border-color: green; -fx-border-width: 1.5; -fx-border-radius: 10;" text="Enter the seed phrase with number ...." textFill="#1cff03">
+         <font>
+            <Font name="SimSun" size="16.0" />
+         </font>
          <effect>
-            <Reflection />
-         </effect>
-      </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="153.0" layoutY="159.0" prefHeight="18.0" prefWidth="143.0" style="-fx-border-color: green;" text="Your login" textFill="#1cff03" />
-      <Label layoutX="63.0" layoutY="246.0" text="Please write down these 10 words carefully or copy them" textAlignment="CENTER">
-         <effect>
-            <DropShadow height="79.69" radius="40.4775" spread="0.88" width="84.22">
-               <color>
-                  <Color green="1.0" blue="0.30000001192092896" />
-               </color>
+            <Glow level="1.0">
                <input>
-                  <ColorAdjust brightness="-1.0" contrast="1.0" hue="1.0" saturation="1.0" />
+                  <DropShadow spread="0.35">
+                     <color>
+                        <Color red="0.10479532182216644" green="0.6736842393875122" blue="0.22805458307266235" />
+                     </color>
+                  </DropShadow>
                </input>
-            </DropShadow>
-         </effect>
-         <font>
-            <Font name="SimSun" size="12.0" />
-         </font>
-      </Label>
-      <Label fx:id="seed1" alignment="CENTER" layoutX="98.0" layoutY="296.0" prefHeight="19.0" prefWidth="98.0" style="-fx-border-color: green; -fx-border-width: 2;" text="word" textFill="#1cff03" />
-      <Label fx:id="seed6" alignment="CENTER" layoutX="247.0" layoutY="296.0" prefHeight="19.0" prefWidth="98.0" style="-fx-border-color: green; -fx-border-width: 2;" text="word" textFill="#1cff03" />
-      <Label fx:id="seed2" alignment="CENTER" layoutX="98.0" layoutY="331.0" prefHeight="19.0" prefWidth="98.0" style="-fx-border-color: green; -fx-border-width: 2;" text="word" textFill="#1cff03" />
-      <Label fx:id="seed7" alignment="CENTER" layoutX="247.0" layoutY="331.0" prefHeight="19.0" prefWidth="98.0" style="-fx-border-color: green; -fx-border-width: 2;" text="word" textFill="#1cff03" />
-      <Label fx:id="seed3" alignment="CENTER" layoutX="98.0" layoutY="368.0" prefHeight="19.0" prefWidth="98.0" style="-fx-border-color: green; -fx-border-width: 2;" text="word" textFill="#1cff03" />
-      <Label fx:id="seed8" alignment="CENTER" layoutX="247.0" layoutY="368.0" prefHeight="19.0" prefWidth="98.0" style="-fx-border-color: green; -fx-border-width: 2;" text="word" textFill="#1cff03" />
-      <Label fx:id="seed4" alignment="CENTER" layoutX="98.0" layoutY="403.0" prefHeight="19.0" prefWidth="98.0" style="-fx-border-color: green; -fx-border-width: 2;" text="word" textFill="#1cff03" />
-      <Label fx:id="seed9" alignment="CENTER" layoutX="247.0" layoutY="403.0" prefHeight="19.0" prefWidth="98.0" style="-fx-border-color: green; -fx-border-width: 2;" text="word" textFill="#1cff03" />
-      <Label fx:id="seed5" alignment="CENTER" layoutX="98.0" layoutY="438.0" prefHeight="19.0" prefWidth="98.0" style="-fx-border-color: green; -fx-border-width: 2;" text="word" textFill="#1cff03" />
-      <Label fx:id="seed10" alignment="CENTER" layoutX="247.0" layoutY="438.0" prefHeight="19.0" prefWidth="98.0" style="-fx-border-color: green; -fx-border-width: 2;" text="word" textFill="#1cff03" />
-      <Label layoutX="68.0" layoutY="300.0" text="1-&gt;" textFill="#03fc20">
-         <font>
-            <Font name="SimSun" size="12.0" />
-         </font>
+            </Glow>
+         </effect></Label>
+      <TextField fx:id="enteredSeed" alignment="CENTER" layoutX="148.0" layoutY="320.0" promptText="seed phrase" style="-fx-background-color: red;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
          <effect>
-            <Glow level="1.0" />
+            <Reflection>
+               <input>
+                  <ColorAdjust brightness="-0.39" contrast="1.0" hue="-0.02" saturation="-0.37" />
+               </input>
+            </Reflection>
          </effect>
-      </Label>
-      <Label layoutX="68.0" layoutY="335.0" text="2-&gt;" textFill="#03fc20">
-         <font>
-            <Font name="SimSun" size="12.0" />
-         </font>
-         <effect>
-            <Glow level="1.0" />
-         </effect>
-      </Label>
-      <Label layoutX="68.0" layoutY="372.0" text="3-&gt;" textFill="#03fc20">
-         <font>
-            <Font name="SimSun" size="12.0" />
-         </font>
-         <effect>
-            <Glow level="1.0" />
-         </effect>
-      </Label>
-      <Label layoutX="68.0" layoutY="407.0" text="4-&gt;" textFill="#03fc20">
-         <font>
-            <Font name="SimSun" size="12.0" />
-         </font>
-         <effect>
-            <Glow level="1.0" />
-         </effect>
-      </Label>
-      <Label layoutX="68.0" layoutY="442.0" text="5-&gt;" textFill="#03fc20">
-         <font>
-            <Font name="SimSun" size="12.0" />
-         </font>
-         <effect>
-            <Glow level="1.0" />
-         </effect>
-      </Label>
-      <Label layoutX="219.0" layoutY="300.0" text="6-&gt;" textFill="#03fc20">
-         <font>
-            <Font name="SimSun" size="12.0" />
-         </font>
-         <effect>
-            <Glow level="1.0" />
-         </effect>
-      </Label>
-      <Label layoutX="219.0" layoutY="335.0" text="7-&gt;" textFill="#03fc20">
-         <font>
-            <Font name="SimSun" size="12.0" />
-         </font>
-         <effect>
-            <Glow level="1.0" />
-         </effect>
-      </Label>
-      <Label layoutX="219.0" layoutY="372.0" text="8-&gt;" textFill="#03fc20">
-         <font>
-            <Font name="SimSun" size="12.0" />
-         </font>
-         <effect>
-            <Glow level="1.0" />
-         </effect>
-      </Label>
-      <Label layoutX="219.0" layoutY="407.0" text="9-&gt;" textFill="#03fc20">
-         <font>
-            <Font name="SimSun" size="12.0" />
-         </font>
-         <effect>
-            <Glow level="1.0" />
-         </effect>
-      </Label>
-      <Label layoutX="213.0" layoutY="442.0" text="10-&gt;" textFill="#03fc20">
-         <font>
-            <Font name="SimSun" size="12.0" />
-         </font>
-         <effect>
-            <Glow level="1.0" />
-         </effect>
-      </Label>
+      </TextField>
+      <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="172.0" layoutY="391.0" style="-fx-border-color: red;" text="invalid seed phrase" textFill="RED" visible="false" />
     </children>
 </AnchorPane>

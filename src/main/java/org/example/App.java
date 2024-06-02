@@ -25,10 +25,5 @@ public class App extends Application {
     public static void main(String[] args) {
         Application.launch(args);
     }
-    public static Boolean checkLogin (String login) {
-        if (login.equals("re1kur")) {
-            return true;
-        }
-        return false;
-    }
+
 }

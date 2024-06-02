@@ -5,44 +5,54 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.example.App;
+import org.example.DataBaseHandler;
+import org.example.Handler;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 
 public class AuthSceneController {
     @FXML
-    private AnchorPane authorizationScene;
+    public AnchorPane authScene;
 
     @FXML
-    private Label ivalidLog;
+    public Label errorLabel;
 
     @FXML
-    private Button logBtn;
+    private Label invalidLog;
 
     @FXML
     private TextField loginField;
 
     @FXML
-    private Button regBtn;
-
-    @FXML
     void logBtnClicked(ActionEvent event) {
-        String usInp = loginField.getText();
-        if (App.checkLogin(usInp) == false) {
-            ivalidLog.setVisible(true);
+        DataBaseHandler dbh = new DataBaseHandler();
+        String usInp = loginField.getText().trim();
+        if (!dbh.checkLogin(usInp)) {
+            invalidLog.setVisible(true);
             return;
         }
-        System.out.printf("You've successfully login.");
+        Handler.setCurrentLogin(usInp);
+        Stage stage = (Stage) authScene.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/view/authPhsScene.fxml"));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Parent root = loader.getRoot();
+        stage.setScene(new Scene(root));
     }
 
     @FXML
     void regBtnClicked(ActionEvent event) {
-        Stage stage = (Stage) regBtn.getScene().getWindow();
+        Stage stage = (Stage) authScene.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/view/regScene.fxml"));
         try {
