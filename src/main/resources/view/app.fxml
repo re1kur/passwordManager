@@ -19,35 +19,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AppController">
     <children>
-        <Button fx:id="addPassword" focusTraversable="false" layoutY="-1.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="450.0" style="-fx-background-color: black;" text="add/generate password" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-            <cursor>
-                <Cursor fx:constant="HAND" />
-            </cursor>
-         <effect>
-            <Glow level="1.0">
-               <input>
-                  <DropShadow spread="1.0">
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                     <input>
-                        <Bloom threshold="0.56">
-                           <input>
-                              <MotionBlur radius="2.49" />
-                           </input>
-                        </Bloom>
-                     </input>
-                  </DropShadow>
-               </input>
-            </Glow>
-         </effect>
-         <font>
-            <Font name="SimSun" size="22.0" />
-         </font>
-        </Button>
         <ScrollPane fx:id="scrollpane" layoutY="93.0" prefHeight="700.0" prefWidth="450.0">
             <content>
-                <AnchorPane fx:id="passwordPane" minHeight="0.0" minWidth="0.0" prefHeight="1250.0" prefWidth="450.0" style="-fx-background-color: black; -fx-border-color: black;">
+                <AnchorPane fx:id="passwordPane" minHeight="0.0" minWidth="0.0" prefHeight="1500.0" prefWidth="450.0" style="-fx-background-color: black; -fx-border-color: black;">
                     <children>
                         <VBox alignment="CENTER" layoutX="38.0" layoutY="14.0" prefHeight="200.0" prefWidth="19.0">
                             <children>
@@ -1220,11 +1194,46 @@
                         </Glow>
                      </effect>
                   </Label>
-                  <VBox fx:id="vboxPasswords" layoutX="-1.0" layoutY="61.0" prefHeight="1187.0" prefWidth="450.0" />
+                  <VBox fx:id="vboxPasswords" alignment="TOP_CENTER" layoutX="5.0" layoutY="68.0" prefHeight="1400.0" prefWidth="440.0" />
                     </children>
                 </AnchorPane>
             </content>
         </ScrollPane>
+        <Button fx:id="addPassword" focusTraversable="false" layoutY="-1.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="436.0" style="-fx-background-color: black;" text="add/generate password" textAlignment="CENTER" textFill="#00ff0f" underline="true" wrapText="true">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+         <effect>
+            <Glow level="1.0">
+               <input>
+                  <Bloom threshold="0.56">
+                     <input>
+                        <MotionBlur radius="2.49">
+                           <input>
+                              <DropShadow height="35.03" radius="13.5075" spread="0.33">
+                                 <color>
+                                    <Color red="0.11539310961961746" green="0.9052631855010986" blue="0.043586745858192444" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                        </MotionBlur>
+                     </input>
+                  </Bloom>
+               </input>
+            </Glow>
+         </effect>
+         <font>
+            <Font name="SimSun" size="22.0" />
+         </font>
+        </Button>
+      <Button fx:id="backToAuthBtn" layoutX="377.0" layoutY="27.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="50.0" style="-fx-background-color: black; -fx-border-color: green; -fx-border-radius: 20;" text="back" textAlignment="CENTER" textFill="#00ff0f">
+         <font>
+            <Font name="SimSun" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Button>
     </children>
    <effect>
       <DropShadow spread="0.26">

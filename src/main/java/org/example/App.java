@@ -16,7 +16,7 @@ public class App extends Application {
         InputStream getIcon = getClass().getResourceAsStream("/icon.jpg");
         Image icon = new Image(getIcon);
         primaryStage.getIcons().add(icon);
-//        primaryStage.setResizable(false);
+        primaryStage.setResizable(false);
         Parent root = FXMLLoader.load(getClass().getResource("/view/mainScene.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

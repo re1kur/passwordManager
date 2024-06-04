@@ -18,6 +18,10 @@ import java.util.List;
 import java.util.Optional;
 
 public class AppController {
+
+    @FXML
+    public Button backToAuthBtn;
+
     @FXML
     private AnchorPane passwordPane;
 
@@ -34,6 +38,18 @@ public class AppController {
     public void initialize () {
         addPasswordPanes(Handler.getCurrentLogin());
         addPassword.setOnAction(event -> showPasswordDialog());
+        backToAuthBtn.setOnAction(actionEvent -> {
+            Stage stage = (Stage) scrollpane.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/view/authScene.fxml"));
+            try {
+                loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            Parent root = loader.getRoot();
+            stage.setScene(new Scene(root));
+        });
     }
     private void showPasswordDialog () {
         DataBaseHandler db = new DataBaseHandler();

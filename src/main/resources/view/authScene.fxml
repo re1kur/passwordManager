@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
@@ -26,7 +27,11 @@
          <effect>
             <Reflection fraction="0.7" topOpacity="0.42">
                <input>
-                  <Glow level="0.8" />
+                  <Glow level="0.8">
+                     <input>
+                        <ColorAdjust contrast="1.0" saturation="-0.62" />
+                     </input>
+                  </Glow>
                </input>
             </Reflection>
          </effect>

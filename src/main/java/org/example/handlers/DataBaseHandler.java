@@ -163,4 +163,15 @@ public class DataBaseHandler extends Configs {
         }
         return passwords;
     }
+
+    public void deletePassword (String login, String password) {
+        String delete = "DELETE FROM " + login + " WHERE password =?";
+        PasswordEncryption pe = new PasswordEncryption();
+        try (PreparedStatement statement = getDbConnection().prepareStatement(delete) ) {
+            statement.setString(1, pe.encrypt(password));
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
