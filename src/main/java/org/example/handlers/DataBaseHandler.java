@@ -1,12 +1,17 @@
-package org.example;
+package org.example.handlers;
 
+import org.example.assets.Configs;
+import org.example.assets.Const;
+import org.example.assets.Password;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
-public class DataBaseHandler extends Configs{
+public class DataBaseHandler extends Configs {
     private Connection dbConnection;
 
     private Connection getDbConnection(){
@@ -32,8 +37,13 @@ public class DataBaseHandler extends Configs{
                 + Const.USERS_SEED6 + "," + Const.USERS_SEED7 + ","
                 + Const.USERS_SEED8 + "," + Const.USERS_SEED9 + ","
                 + Const.USERS_SEED10 + ")" + "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        String create = "CREATE TABLE " + login +" (id INT NOT NULL AUTO_INCREMENT,"
+                + "password VARCHAR(100) NOT NULL,"
+                + "note VARCHAR(100) NOT NULL,"
+                + "primary key (id))";
         try {
-            try (PreparedStatement prst = getDbConnection().prepareStatement(insert)) {
+            try (PreparedStatement prst = getDbConnection().prepareStatement(insert);
+                 PreparedStatement pstTable = getDbConnection().prepareStatement(create)) {
                 prst.setString(1, login);
                 prst.setString(2, seed1);
                 prst.setString(3, seed2);
@@ -46,6 +56,8 @@ public class DataBaseHandler extends Configs{
                 prst.setString(10, seed9);
                 prst.setString(11, seed10);
                 prst.executeUpdate();
+                pstTable.executeUpdate();
+
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -91,5 +103,64 @@ public class DataBaseHandler extends Configs{
             throw new RuntimeException(e);
         }
         return false;
+    }
+    public void addGeneratedPassword (String login, String len, String note) {
+        System.out.println(login);
+        String insert = "INSERT INTO " + login
+                + " (password,note)VALUES (?,?)";
+        System.out.println(insert);
+        PasswordGenerator pg = new PasswordGenerator();
+        PasswordEncryption pe = new PasswordEncryption();
+        String password = pg.generatePassword(Integer.parseInt(len));
+        System.out.println(password);
+        String encrypt = pe.encrypt(password);
+        try {
+            try (PreparedStatement statement = getDbConnection().prepareStatement(insert)) {
+                statement.setString(1, encrypt);
+                statement.setString(2, note);
+                statement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            System.err.println("SQL exception welcome. :)");
+        }
+    }
+    public void addExistingPassword (String login, String password, String note) {
+        System.out.println(login);
+        String insert = "INSERT INTO " + login
+                + " (password,note)VALUES (?,?)";
+        System.out.println(insert);
+        PasswordEncryption pe = new PasswordEncryption();
+        System.out.println(password);
+        String encrypt = pe.encrypt(password);
+        System.out.println(encrypt);
+        try {
+            try (PreparedStatement statement = getDbConnection().prepareStatement(insert)) {
+                statement.setString(1, encrypt);
+                statement.setString(2, note);
+                statement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            System.err.println("SQL exception welcome. :)");
+        }
+    }
+    public List<Password> parsePasswords(String login) {
+        PasswordEncryption pe = new PasswordEncryption();
+        List<Password> passwords = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM " + login;
+            try (PreparedStatement statement = getDbConnection().prepareStatement(query)) {
+                ResultSet res = statement.executeQuery();
+                while (res.next()) {
+                    passwords.add(new Password(
+                            pe.decrypt(res.getString(2)),
+                            res.getString(3)
+                    ));
+                }
+            }
+            return passwords;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return passwords;
     }
 }

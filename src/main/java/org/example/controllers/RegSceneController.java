@@ -9,9 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.example.App;
-import org.example.DataBaseHandler;
-import org.example.Handler;
+import org.example.handlers.DataBaseHandler;
+import org.example.handlers.Handler;
 
 import java.io.IOException;
 

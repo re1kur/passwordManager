@@ -9,8 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.example.DataBaseHandler;
-import org.example.Handler;
+import org.example.handlers.DataBaseHandler;
+import org.example.handlers.Handler;
 
 import java.io.IOException;
 
@@ -52,6 +52,16 @@ public class AuthPhsSceneController {
             return;
         }
         System.out.println("YOU FINALLY LOGIN");
+        Stage stage = (Stage) authCheckSeedPhsScene.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/view/app.fxml"));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Parent root = loader.getRoot();
+        stage.setScene(new Scene(root));
     }
     @FXML
     public void initialize(){

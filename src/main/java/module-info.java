@@ -8,4 +8,6 @@ module passwordManager {
 
     opens org.example;
     opens org.example.controllers to javafx.fxml;
+    opens org.example.handlers;
+    opens org.example.assets;
 }

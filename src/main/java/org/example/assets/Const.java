@@ -1,4 +1,4 @@
-package org.example;
+package org.example.assets;
 
 public class Const {
     public static final String USER_TABLE = "users";

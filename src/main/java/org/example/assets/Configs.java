@@ -1,4 +1,4 @@
-package org.example;
+package org.example.assets;
 
 public class Configs {
     protected String dbHost = "localhost";
