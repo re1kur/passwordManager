@@ -31,6 +31,8 @@ public class MainSceneController {
         }
         Parent root = loader.getRoot();
         stage.setScene(new Scene(root));
-    };
     }
+
+    ;
+}
 

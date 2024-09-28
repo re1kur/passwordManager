@@ -32,7 +32,7 @@ public class PasswordEncryption {
     }
 
     // Расшифрование пароля
-    public String decrypt(String encryptedPassword){
+    public String decrypt(String encryptedPassword) {
         try {
             Key key = generateKey();
             cipher.init(Cipher.DECRYPT_MODE, key);

@@ -41,10 +41,14 @@ public class RegSceneController {
 
     @FXML
     void logToReg(ActionEvent event) {
-        DataBaseHandler dbh = new DataBaseHandler();
         String login = logToReg.getText().trim();
-        if (dbh.checkLogin(login).equals(true)) {
+        if (DataBaseHandler.checkLogin(login).equals(true)) {
             errorLabel.setText("This login is already registered");
+            errorLabel.setVisible(true);
+            return;
+        }
+        if (login.length() > 20) {
+            errorLabel.setText("Too long login.");
             errorLabel.setVisible(true);
             return;
         }
@@ -54,7 +58,6 @@ public class RegSceneController {
             return;
         }
         Handler.setCurrentLogin(login);
-        System.out.println(Handler.getCurrentLogin());
         Stage stage = (Stage) regScene.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/view/seedPhsScene.fxml"));

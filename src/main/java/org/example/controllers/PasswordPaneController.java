@@ -10,7 +10,7 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
-import org.example.assets.PasswordPane;
+import org.example.classes.PasswordPane;
 import org.example.handlers.DataBaseHandler;
 import org.example.handlers.Handler;
 
@@ -37,18 +37,18 @@ public class PasswordPaneController {
     private Button showPasswBtn;
 
     @FXML
-    void initialize () {
-        copyBtn.setOnAction(actionEvent -> {
+    void initialize() {
+        copyBtn.setOnAction(_ -> {
             final ClipboardContent clipboardContent = new ClipboardContent();
             clipboardContent.putString(passwordLabel.getText());
-            Clipboard.getSystemClipboard().setContent(clipboardContent);});
+            Clipboard.getSystemClipboard().setContent(clipboardContent);
+        });
         noteLabel.setText(PasswordPane.getNote());
         passwordLabel.setText(PasswordPane.getPassword());
-        showPasswBtn.setOnAction(actionEvent -> passwordLabel.setEffect(new GaussianBlur(0)));
-        hidePasswBtn.setOnAction(actionEvent -> passwordLabel.setEffect(new GaussianBlur(10)));
-        deletePasswBtn.setOnAction(actionEvent -> {
-            DataBaseHandler dbHandler = new DataBaseHandler();
-            dbHandler.deletePassword(Handler.getCurrentLogin(), passwordLabel.getText());
+        showPasswBtn.setOnAction(_ -> passwordLabel.setEffect(new GaussianBlur(0)));
+        hidePasswBtn.setOnAction(_ -> passwordLabel.setEffect(new GaussianBlur(10)));
+        deletePasswBtn.setOnAction(_ -> {
+            DataBaseHandler.deletePassword(Handler.getCurrentLogin(), passwordLabel.getText());
             Stage stage = (Stage) passwordLabel.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/view/app.fxml"));

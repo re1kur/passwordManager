@@ -29,9 +29,8 @@ public class AuthSceneController {
 
     @FXML
     void logBtnClicked(ActionEvent event) {
-        DataBaseHandler dbh = new DataBaseHandler();
         String usInp = loginField.getText().trim();
-        if (!dbh.checkLogin(usInp)) {
+        if (!DataBaseHandler.checkLogin(usInp)) {
             invalidLog.setVisible(true);
             return;
         }

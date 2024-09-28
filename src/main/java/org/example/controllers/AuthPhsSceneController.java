@@ -45,8 +45,7 @@ public class AuthPhsSceneController {
     @FXML
     void finallyAuth(ActionEvent event) {
         String seed = enteredSeed.getText();
-        DataBaseHandler dbh = new DataBaseHandler();
-        if (!dbh.logInUser(Handler.getCurrentLogin(),
+        if (!DataBaseHandler.logInUser(Handler.getCurrentLogin(),
                 seed, Handler.getSeedNumber()).equals(true)) {
             errorLabel.setVisible(true);
             return;
@@ -63,8 +62,9 @@ public class AuthPhsSceneController {
         Parent root = loader.getRoot();
         stage.setScene(new Scene(root));
     }
+
     @FXML
-    public void initialize(){
+    public void initialize() {
         seedNumber.setText(
                 "Enter the seed phrase with number "
                         + Handler.getRandInt()

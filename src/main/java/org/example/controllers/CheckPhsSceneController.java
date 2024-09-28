@@ -42,14 +42,13 @@ public class CheckPhsSceneController {
 
     @FXML
     void finalReg(ActionEvent event) {
-        DataBaseHandler dbHandler = new DataBaseHandler();
         String usInp = enteredSeed.getText().trim();
         if (!usInp.equals(Handler.getSeeds()[Handler.getSeedNumber()])) {
             errorLabel.setVisible(true);
             return;
         }
         String[] seeds = Handler.getSeeds();
-        dbHandler.signUpUser(Handler.getCurrentLogin(), seeds[0],
+        DataBaseHandler.signUpUser(Handler.getCurrentLogin(), seeds[0],
                 seeds[1], seeds[2], seeds[3], seeds[4], seeds[5],
                 seeds[6], seeds[7], seeds[8], seeds[9]);
         Stage stage = (Stage) checkSeedPhsScene.getScene().getWindow();
@@ -65,11 +64,10 @@ public class CheckPhsSceneController {
     }
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         seedNumber.setText(
                 "Enter the seed phrase with number "
-                + Handler.getRandInt()
+                        + Handler.getRandInt()
         );
     }
-
 }

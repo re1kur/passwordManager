@@ -1,14 +1,14 @@
 package org.example.controllers;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.example.assets.Password;
-import org.example.assets.PasswordPane;
+import org.example.classes.Password;
+import org.example.classes.PasswordPane;
 import org.example.handlers.DataBaseHandler;
 import org.example.handlers.Handler;
 
@@ -23,9 +23,6 @@ public class AppController {
     public Button backToAuthBtn;
 
     @FXML
-    private AnchorPane passwordPane;
-
-    @FXML
     private VBox vboxPasswords;
 
     @FXML
@@ -35,10 +32,10 @@ public class AppController {
     private ScrollPane scrollpane;
 
     @FXML
-    public void initialize () {
+    public void initialize() {
         addPasswordPanes(Handler.getCurrentLogin());
-        addPassword.setOnAction(event -> showPasswordDialog());
-        backToAuthBtn.setOnAction(actionEvent -> {
+        addPassword.setOnAction(_ -> showPasswordDialog());
+        backToAuthBtn.setOnAction(_ -> {
             Stage stage = (Stage) scrollpane.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/view/authScene.fxml"));
@@ -51,8 +48,8 @@ public class AppController {
             stage.setScene(new Scene(root));
         });
     }
-    private void showPasswordDialog () {
-        DataBaseHandler db = new DataBaseHandler();
+
+    private void showPasswordDialog() {
         List<String> choices = new ArrayList<>();
         choices.add("Generate password");
         choices.add("Add existing password");
@@ -79,7 +76,7 @@ public class AppController {
                     Optional<String> noteResult = noteDialog.showAndWait();
                     try {
                         noteResult.ifPresent(note -> {
-                            db.addGeneratedPassword(Handler.getCurrentLogin(), length, note);
+                            DataBaseHandler.addGeneratedPassword(Handler.getCurrentLogin(), length, note);
                         });
                     } catch (NumberFormatException e) {
                         System.out.println("Invalid length entered");
@@ -100,23 +97,23 @@ public class AppController {
 
                     Optional<String> noteResult = noteDialog.showAndWait();
                     noteResult.ifPresent(note -> {
-                        db.addExistingPassword(Handler.getCurrentLogin(),existingPassword, note);
+                        DataBaseHandler.addExistingPassword(Handler.getCurrentLogin(), existingPassword, note);
                     });
                 });
             }
         });
         reloadScene();
     }
-    private void addPasswordPanes (String login) {
-        DataBaseHandler dbHandler = new DataBaseHandler();
-        List<Password> passwords = dbHandler.parsePasswords(login);
-        for (Password password: passwords) {
+
+    private void addPasswordPanes(String login) {
+        List<Password> passwords = DataBaseHandler.parsePasswords(login);
+        for (Password password : passwords) {
             vboxPasswords.getChildren().add(new PasswordPane(password.getPassword(),
                     password.getNote(), vboxPasswords));
         }
     }
 
-    private void reloadScene () {
+    private void reloadScene() {
         Stage stage = (Stage) scrollpane.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/view/app.fxml"));

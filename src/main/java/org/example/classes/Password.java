@@ -1,9 +1,10 @@
-package org.example.assets;
+package org.example.classes;
 
 public class Password {
     private String password;
     private String note;
-    public Password (String password, String note) {
+
+    public Password(String password, String note) {
         this.password = password;
         this.note = note;
     }

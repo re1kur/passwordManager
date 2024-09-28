@@ -18,9 +18,6 @@ public class SeedPhsSceneController {
     private Label enteredLogin;
 
     @FXML
-    private Label errorLabel;
-
-    @FXML
     private Label seed1;
 
     @FXML
@@ -82,7 +79,7 @@ public class SeedPhsSceneController {
     }
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         String enteredLog = Handler.getCurrentLogin();
         enteredLogin.setText(enteredLog);
         Handler.generateRandomWords();
